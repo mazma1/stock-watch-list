@@ -1,9 +1,11 @@
 import React from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import Watchlist from './components/Watchlist';
 
-function App() {
-  return (
-    <h2>Stock Watch List</h2>
-  );
-}
+const App = () => (
+  <ChakraProvider>
+    <Watchlist />
+  </ChakraProvider>
+);
 
 export default App;
