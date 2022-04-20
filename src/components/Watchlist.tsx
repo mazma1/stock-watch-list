@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { Container, Box, Heading, Input, Button, HStack } from '@chakra-ui/react'
+import { Container, Box, Heading, Input, Button, HStack } from '@chakra-ui/react';
+import Tickerlist from './Tickerlist';
 
 const Watchlist = (): ReactElement => (
   <>
@@ -7,11 +8,12 @@ const Watchlist = (): ReactElement => (
       <Heading fontSize='xl'>Trackr Watchlist</Heading>
     </Box>
 
-    <Container>
+    <Container maxW={{ base: '100vw', md: '80vw', xl: '50vw' }}>
       <HStack spacing='12px' mt='24px'>
         <Input placeholder='Add Ticker' />
         <Button colorScheme='blue'>Submit</Button>
       </HStack>
+      <Tickerlist />
     </Container>
   </>
 );
