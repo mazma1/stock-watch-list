@@ -37,14 +37,14 @@ const Tickerlist = ({ items }: any): ReactElement => {
       <TickerlistParent>
         { items.length > 0 && items.map((item: TickerItem) => {
           if (item.id) {
-            const { id } = item;
+            const { id, currencyName, openPrice, closePrice } = item;
             return (
               <Tr key={item.id}>
                 <Td>{item.ticker}</Td>
                 <Td>{item.name}</Td>
-                <Td isNumeric>977.20</Td>
-                <Td isNumeric>{item.openPrice}</Td>
-                <Td isNumeric>{item.closePrice}</Td>
+                <Td isNumeric>{`${currencyName?.toUpperCase()} 977.20`}</Td>
+                <Td isNumeric>{`${currencyName?.toUpperCase()} ${openPrice}`}</Td>
+                <Td isNumeric>{`${currencyName?.toUpperCase()} ${closePrice}`}</Td>
                 <Td>
                   <IconButton
                     aria-label='Delete ticker'

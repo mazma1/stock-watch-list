@@ -14,9 +14,10 @@ const getTickerPayload = async (ticker: string): Promise<TickerItem> => {
   }
 
   if(tickerDetailsResult && tickerDetailsResult.active) {
-    const { name, ticker } = tickerDetailsResult; 
+    const { name, ticker, currency_name } = tickerDetailsResult; 
     payload.name = name;
     payload.ticker = ticker;
+    payload.currencyName = currency_name;
   }
 
   return payload;

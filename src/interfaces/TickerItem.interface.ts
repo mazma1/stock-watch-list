@@ -5,4 +5,5 @@ export default interface TickerItem {
   currentPrice?: number;
   openPrice?: number;
   closePrice?: number;
+  currencyName?: string;
 }
