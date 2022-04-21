@@ -8,6 +8,7 @@ import getTickerPayload from '../utils/getTickerPayload';
 const Watchlist = (): ReactElement => {
   const toast = useToast();
   const [ticker, setTicker] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const allTickers = useLiveQuery(() => db.table('tickers').toArray(), []);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -18,8 +19,12 @@ const Watchlist = (): ReactElement => {
     event.preventDefault();
 
     try {
+      setIsLoading(true);
+
       const payload = await getTickerPayload(ticker);
       db.table('tickers').add(payload);
+
+      setIsLoading(false);
       toast({
         title: 'Request completed',
         description: "New ticker successfully added.",
@@ -49,7 +54,13 @@ const Watchlist = (): ReactElement => {
       <Container maxW={{ base: '100vw', md: '80vw', xl: '50vw' }}>
         <HStack spacing='12px' mt='24px'>
           <Input placeholder='Add Ticker' onChange={handleInputChange} />
-          <Button colorScheme='blue' onClick={handleSubmit}>Submit</Button>
+          <Button
+            isLoading={isLoading}
+            colorScheme='blue'
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </HStack>
 
         { allTickers && allTickers.length > 0 
