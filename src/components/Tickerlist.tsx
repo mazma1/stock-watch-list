@@ -2,25 +2,22 @@ import React, { ReactElement } from 'react';
 import { Box } from '@chakra-ui/react';
 import { Tr, Td } from '@chakra-ui/react';
 import TickerlistParent from './TickerlistTable';
+import TickerItem from '../interfaces/TickerItem.interface';
 
 
-const Tickerlist = (): ReactElement => (
+const Tickerlist = ({ items }: any): ReactElement => (
   <Box w='100%' py={8}>
     <TickerlistParent>
-      <Tr>
-          <Td>TSLA</Td>
-          <Td>Tesla</Td>
-          <Td isNumeric>977.20</Td>
-          <Td isNumeric>977.20</Td>
-          <Td isNumeric>977.20</Td>
-        </Tr>
-        <Tr>
-          <Td>FB</Td>
-          <Td>Meta Platforms, Inc.</Td>
-          <Td isNumeric>200.42</Td>
-          <Td isNumeric>200.42</Td>
-          <Td isNumeric>200.42</Td>
-        </Tr>
+      { items.length > 0 && items.map((item: TickerItem, id: number) => (
+          <Tr key={id}>
+            <Td>TSLA</Td>
+            <Td>Tesla</Td>
+            <Td isNumeric>977.20</Td>
+            <Td isNumeric>977.20</Td>
+            <Td isNumeric>977.20</Td>
+          </Tr>
+        ))
+      }
     </TickerlistParent>
   </Box>
 );
