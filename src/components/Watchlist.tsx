@@ -85,7 +85,7 @@ const Watchlist = (): ReactElement => {
 
       <Container maxW={{ base: '100vw', md: '80vw', xl: '50vw' }}>
         <HStack spacing='12px' mt='24px'>
-          <Input placeholder='Add Ticker' onChange={handleInputChange} />
+          <Input placeholder='Add Ticker' value={ticker} onChange={handleInputChange} />
           <Button
             isLoading={isLoading}
             colorScheme='blue'
