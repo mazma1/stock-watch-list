@@ -10,11 +10,11 @@ const Tickerlist = ({ items }: any): ReactElement => (
     <TickerlistParent>
       { items.length > 0 && items.map((item: TickerItem, id: number) => (
           <Tr key={id}>
-            <Td>TSLA</Td>
-            <Td>Tesla</Td>
+            <Td>{item.ticker}</Td>
+            <Td>{item.name}</Td>
             <Td isNumeric>977.20</Td>
-            <Td isNumeric>977.20</Td>
-            <Td isNumeric>977.20</Td>
+            <Td isNumeric>{item.openPrice}</Td>
+            <Td isNumeric>{item.closePrice}</Td>
           </Tr>
         ))
       }
