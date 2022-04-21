@@ -20,8 +20,8 @@ const TickerlistTable = ({ children }: TickerTableProps): ReactElement => (
           <Th>Ticker</Th>
           <Th>Name</Th>
           <Th isNumeric>Current Price</Th>
-          <Th isNumeric>Open Price</Th>
-          <Th isNumeric>Close Price</Th>
+          <Th isNumeric>Previous Day Open Price</Th>
+          <Th isNumeric>Previous Day Close Price</Th>
           <Th>Action</Th>
         </Tr>
       </Thead>
