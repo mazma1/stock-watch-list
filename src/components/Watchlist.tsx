@@ -51,6 +51,7 @@ const Watchlist = (): ReactElement => {
       db.table('tickers').add(payload);
 
       setIsLoading(false);
+      setTicker('');
       toast({
         title: 'Request completed',
         description: "New ticker successfully added.",
