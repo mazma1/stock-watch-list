@@ -4,6 +4,7 @@ import { Container, Box, Heading, Input, Button, HStack, useToast } from '@chakr
 import Tickerlist from './Tickerlist';
 import { db } from '../APIs/dexie';
 import getTickerPayload from '../utils/getTickerPayload';
+import getTickerFromDB from '../utils/getTickerFromDB';
 
 const Watchlist = (): ReactElement => {
   const toast = useToast();
@@ -19,6 +20,31 @@ const Watchlist = (): ReactElement => {
     event.preventDefault();
 
     try {
+      const MAX_TICKER_LENGTH = 5;
+      const tickerInDB = await getTickerFromDB(ticker);
+
+      if (tickerInDB) {
+        return toast({
+          title: 'Duplicate',
+          description: "Ticker already added.",
+          status: 'info',
+          duration: 9000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+
+      if (ticker.length > MAX_TICKER_LENGTH ) {
+        return toast({
+          title: 'Invalid ticker',
+          description: "Stock ticker is invalid.",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+          position: 'top-right',
+        });
+      }
+
       setIsLoading(true);
 
       const payload = await getTickerPayload(ticker);
@@ -34,9 +60,14 @@ const Watchlist = (): ReactElement => {
         position: 'top-right',
       });
     } catch (error) {
+      let errorMessage;
+      if (error instanceof Error) {
+        errorMessage = JSON.parse(error.message).message;
+      }
+      setIsLoading(false);
       toast({
         title: 'Something went wrong',
-        description: "Error adding ticker, try again.",
+        description: errorMessage || "Error adding ticker, try again.",
         status: 'error',
         duration: 9000,
         isClosable: true,
